@@ -33,9 +33,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
-
-  @Binding var selectedTab: Int
   @State private var showHistory = false
+  @Binding var selectedTab: Int
+  @Binding var history: HistoryStore
 
   var body: some View {
     ZStack {
@@ -45,11 +45,10 @@ struct WelcomeView: View {
         Button("History") {
           showHistory.toggle()
         }
-                .sheet(isPresented: $showHistory) {
-                  HistoryView(showHistory: $showHistory)
-                }
-
-                .padding(.bottom)
+        .sheet(isPresented: $showHistory) {
+          HistoryView(history: $history, showHistory: $showHistory)
+        }
+          .padding(.bottom)
       }
       VStack {
         HStack(alignment: .bottom) {
@@ -78,8 +77,10 @@ struct WelcomeView: View {
   }
 }
 
+/*
 struct WelcomeView_Previews: PreviewProvider {
   static var previews: some View {
     WelcomeView(selectedTab: .constant(9))
   }
 }
+*/
