@@ -33,7 +33,7 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var selectedTab = 9
+  @SceneStorage("selectedTab") private var selectedTab = 9
   @State private var history = HistoryStore()
 
   var body: some View {
